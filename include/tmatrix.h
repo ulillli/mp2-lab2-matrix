@@ -228,11 +228,10 @@ public:
       }
   }
   operator TDynamicVector<TDynamicVector<T>>() {
-      TDynamicVector<TDynamicVector<T>> result(sz) {
+      TDynamicVector<TDynamicVector<T>> result(sz);
           for (int i = 0; i < sz; i++) {
               result[i] = pMem[i];
           }
-      }
       return result;
   }
   using TDynamicVector<TDynamicVector<T>>::operator[];
