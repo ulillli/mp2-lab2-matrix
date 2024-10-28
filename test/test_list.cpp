@@ -112,4 +112,11 @@ TEST(list, can_assign_other_list_not_equal_size)
 	
 	EXPECT_EQ(((L1.size()==size2)&&(L1[10].value==10)), 1);
 }
+TEST(list, can_use_moving_operator_assign)
+{
+	size_t size1 = 10, size2 = 12;
+	list<int> L1(size1);
+
+	ASSERT_NO_THROW(L1=list<int>(10));
+}
 

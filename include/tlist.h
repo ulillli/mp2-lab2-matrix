@@ -67,6 +67,12 @@ struct list {
 		}
 		return *this;
 	}
+	list& operator=(list&& other) {
+		Node* tmp = other.first;
+		other.first = this->first;
+		this->first = tmp;
+		return *this;
+	}
 	list(list&& other) {
 		first = other.first;
 		other.first =nullptr;
