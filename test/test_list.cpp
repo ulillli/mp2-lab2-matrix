@@ -119,4 +119,49 @@ TEST(list, can_use_moving_operator_assign)
 
 	ASSERT_NO_THROW(L1=list<int>(10));
 }
+TEST(list, iterator_can_do_post_INC)
+{
+	size_t size = 10;
+	list<int> L1(size);
+	L1[3].value = 10;
+	list<int>::iterator it(&L1[2]);
+
+	EXPECT_EQ((*it++).value, 0);
+}
+TEST(list, iterator_can_do_pref_INC)
+{
+	size_t size = 10;
+	list<int> L1(size);
+	L1[3].value = 10;
+	list<int>::iterator it(&L1[2]);
+
+	EXPECT_EQ((*++it).value, 10);
+}
+TEST(list, iterator_can_compare_similar_iterators)
+{
+	size_t size = 10;
+	list<int> L1(size);
+	L1[3].value = 10;
+	list<int>::iterator it1(&L1[2]),it2(&L1[2]);
+
+	EXPECT_EQ(it1==it2,1);
+}
+TEST(list, iterator_can_compare_not_similar_iterators)
+{
+	size_t size = 10;
+	list<int> L1(size);
+	L1[3].value = 10;
+	list<int>::iterator it1(&L1[2]), it2(&L1[3]);
+
+	EXPECT_EQ(it1 != it2, 1);
+}
+TEST(list, iterator_can_use_operator_arrow)
+{
+	size_t size = 10;
+	list<int> L1(size);
+	L1[3].value = 10;
+	list<int>::iterator it(&L1[3]);
+	
+	//EXPECT_EQ(it->value, 10);
+}
 

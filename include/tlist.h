@@ -144,4 +144,36 @@ struct list {
 			curr = first;*/
 		}
 	}
+	class iterator {
+		Node* curr;
+	public:
+		iterator(Node* node) : curr(node) {}
+
+		iterator operator++(int) { //it++
+			if (curr) {
+				iterator tmp(curr);
+				curr = curr->next;
+				return tmp;
+			}
+		}
+		iterator operator++() { //++it
+			if (curr) {
+				curr = curr->next;
+				return *this;
+			}
+		}
+		Node operator*() {
+			return *curr;
+		}
+		bool operator==(iterator& other) {
+			return curr == other.curr;
+		}
+		bool operator!=(iterator& other) {
+			return !(curr == other.curr);
+		}
+		/*Node operator->() {
+			return *curr.value;
+		}*/
+	};
 };
+
