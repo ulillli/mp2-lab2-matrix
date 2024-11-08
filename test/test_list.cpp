@@ -162,6 +162,34 @@ TEST(list, iterator_can_use_operator_arrow)
 	L1[3].value = 10;
 	list<int>::iterator it(&L1[3]);
 	
-	//EXPECT_EQ(it->value, 10);
+	EXPECT_EQ(it->value, 10);
+}
+TEST(list, iterator_can_use_operator_plus_const)
+{
+	size_t size = 10;
+	list<int> L1(size);
+	L1[3].value = 10;
+	list<int>::iterator it(&L1[1]);
+	 
+	EXPECT_EQ((*(it+2)).value, 10);
+}
+TEST(list, operator_plus_const_throws_exception_if_added_number_goes_beyond) //бросает исключение, если прибавляемое число выходит за пределы
+{
+	size_t size = 10;
+	list<int> L1(size);
+	list<int>::iterator it(&L1[8]);
+
+	ASSERT_ANY_THROW(it + 2);
+}
+TEST(list, the_cyclic_shift_task) //задачка на циклический сдвиг списка на k элементов вправо за один проход
+{
+	size_t size = 10;
+	list<int> L1(size);
+	L1[0].value = 10;
+
+	L1.change(3);
+	L1.change(4);
+
+	EXPECT_EQ(L1[7].value, 10);
 }
 

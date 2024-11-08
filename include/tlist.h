@@ -165,15 +165,44 @@ struct list {
 		Node operator*() {
 			return *curr;
 		}
+		iterator operator+(int n) {
+			iterator tmp(curr);
+			int i = 0;
+			while (i<n) {
+				if ((*tmp).next) {
+					tmp++;
+				}
+				else {
+					throw "index out of range";
+				}
+				i++;
+			}
+			return tmp;
+		}
 		bool operator==(iterator& other) {
 			return curr == other.curr;
 		}
 		bool operator!=(iterator& other) {
 			return !(curr == other.curr);
 		}
-		/*Node operator->() {
-			return *curr.value;
-		}*/
+		Node *operator->() {
+			return curr;
+		}
 	};
+	void change(int k) { //задача на циклический сдвиг
+		Node* tmp1 = this->first;
+		Node* tmp2 = this->first;
+		int count = 0;
+		while (tmp1->next) {
+			count++;
+			if (count > k) {
+				tmp2 = tmp2->next;
+			}
+			tmp1 = tmp1->next;
+		}
+		tmp1->next = first;
+		this->first = tmp2->next;
+		tmp2->next = nullptr;
+	}
 };
 
