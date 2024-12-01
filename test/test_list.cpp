@@ -1,5 +1,4 @@
 #include "tlist.h"
-
 #include <gtest.h>
 
 TEST(list, can_create_list_positive_len)
@@ -9,7 +8,7 @@ TEST(list, can_create_list_positive_len)
 
 TEST(list, can_not_create_list_negitive_len)
 {
-	ASSERT_ANY_THROW(list<int> L(-5));;
+	ASSERT_ANY_THROW(list<int> L(-5));
 }
 TEST(list, can_create_list_using_copy_construction)
 {
